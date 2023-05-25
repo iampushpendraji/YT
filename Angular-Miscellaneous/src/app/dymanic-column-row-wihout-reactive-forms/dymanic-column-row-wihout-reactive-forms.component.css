@@ -1,0 +1,33 @@
+.main {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(252, 70, 107, 1) 0%,
+    rgba(107, 63, 251, 0.7483) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  background-color: aliceblue;
+  /* padding: 10px; */
+  border-radius: 10px;
+  max-height: 500px;
+  /* max-width: 80%; */
+  overflow: auto;
+  position: relative;
+}
+
+th,
+td {
+  padding: 10px 20px;
+  border: 1px solid;
+}
+
+th {
+    background-color: rebeccapurple;
+    color: aliceblue;
+}

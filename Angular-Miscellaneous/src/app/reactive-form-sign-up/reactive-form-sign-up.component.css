@@ -1,0 +1,90 @@
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(90deg,
+            rgba(252, 70, 107, 1) 0%,
+            rgba(107, 63, 251, 0.7483) 100%);
+}
+
+.sign-up-wrapper {
+    background-color: aliceblue;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 10px 10px 0px 25px black, 20px 20px 0px 50px blueviolet;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.lock {
+    background: bisque;
+    /* padding: 10px; */
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+.input-group {
+    display: flex;
+    gap: 20px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.gender-age-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.log-in-btn {
+    float: right;
+}
+
+.log-in-btn a {
+    color: blue;
+}
+
+.log-in-btn a:hover {
+    color: black;
+}
+
+.error-icon {
+    color: red;
+    cursor: pointer;
+}
+
+.passwordIcon {
+    cursor: pointer;
+}
+
+/* For mobile phones */
+@media only screen and (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .gender-age-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sign-up-wrapper {
+        padding: 50px;
+        margin: 0;
+        box-shadow: none;
+        border-radius: 10px;
+    }
+}

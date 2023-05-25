@@ -1,0 +1,60 @@
+<div class="main">
+    <div>
+  
+      <!-- Header Section -->
+      <div class="form-header">
+        <mat-icon class="lock">lock</mat-icon>
+        <h1>Log In</h1>
+      </div>
+  
+      <!-- Form Section -->
+      <form #login="ngForm" (ngSubmit)="loginSubmit(login)">
+  
+        <!-- Email Field -->
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <mat-icon matSuffix>alternate_email</mat-icon>
+            <mat-icon
+              matSuffix
+              class="info"
+              [ngStyle]="( email.dirty || email.touched ) && ( email?.hasError('required') || email.hasError('pattern')) ?
+               { 'visibility': 'visible' } : { 'visibility': 'hidden' }"
+               [matTooltip]="email?.hasError('required') ? 'Email Field Is Required' : email.hasError('pattern') ? 'Please Write Correct Email' : '' "
+            >
+              info
+            </mat-icon>
+            <input autocomplete type="email" matInput placeholder="Placeholder" name="email" ngModel #email="ngModel" required [pattern]="email_pattern" />
+          </mat-form-field>
+        </div>
+  
+        <!-- Password Field -->
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <mat-icon
+            matSuffix
+            (click)="showPassword = !showPassword"
+            >
+            {{ !showPassword ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
+            <mat-icon
+            matSuffix
+            class="info"
+            [ngStyle]="( password.dirty || password.touched ) && ( password?.hasError('required') || password.hasError('pattern') ) ?
+            { 'visibility': 'visible' } : { 'visibility': 'hidden' }"
+            [matTooltip]=" password?.hasError('required') ? 'Password Field Is Required' : ( !password?.hasError('required') &&  password.hasError('pattern') ) ?
+            'Password Field Should Contain 8 letters, atleast 1 word, 1 number and 1 symbol' : '' "
+            >
+            info
+          </mat-icon>
+            <input autocomplete [type]="!showPassword ? 'password' : 'text'" matInput placeholder="Placeholder" #password="ngModel" ngModel name="password" required [pattern]="password_pattern" />
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" type="submit" [disabled]="login.form.status == 'INVALID'">Log In</button>
+      </form>
+  
+  
+    </div>
+  </div>
+  

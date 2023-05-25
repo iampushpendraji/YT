@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+
+    <form [formGroup]="studentForm" (ngSubmit)="getFormData()" class="mt-5 w-50">
+  
+      <div class="border border-info p-5" formArrayName="studentList">
+  
+        <div *ngFor="let student of studentListArray().controls; let i = index">
+  
+          <div [formGroupName]="i" class="border border-dark my-2 p-5">
+            <input type="text" placeholder="Student's Name" formControlName="student_name" />
+            <input type="text" placeholder="Student's Class" formControlName="student_class" />
+            <input type="text" placeholder="Student's Age"  formControlName="student_age" />
+            <button type="button" *ngIf="studentListArray().length > 1" (click)="removeStudent(i)" class="btn btn-sm btn-danger ms-1">Remove Student</button>
+            
+            <div [formGroup]="subjectsFormGroup(i)">
+  
+              <div formArrayName="studentSubjectArray">
+  
+                <div *ngFor="let studentSub of subjectsArray(i).controls; let j = index;">
+  
+                  <div [formGroupName]="j">
+                    <input type="text" placeholder="Subject" formControlName="subject" />
+                    <input type="text" placeholder="Marks" formControlName="marks" />
+                    <button type="button" *ngIf="subjectsArray(i).length > 1" (click)="removeNewSubject(i, j)" class="btn btn-sm btn-danger ms-1">Remove Subject</button>
+                  </div>
+                
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <button type="button" (click)="addNewSubject(i)" class="btn btn-sm btn-warning mt-2">Add Subject</button>
+  
+          </div>
+  
+        </div>
+      </div>
+      <button type="button" (click)="addStudent()" class="btn btn-sm btn-primary mt-4 mb-5">Add New Student</button>
+      <button type="submit" class="btn btn-sm btn-success mt-4 ms-2 mb-5">Submit</button>
+  
+    </form>
+  
+  </div>

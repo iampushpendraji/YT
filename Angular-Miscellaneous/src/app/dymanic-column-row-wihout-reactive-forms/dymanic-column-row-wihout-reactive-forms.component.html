@@ -1,0 +1,44 @@
+<div class="main">
+  <div>
+    <div>
+      <div class="mb-2">
+        <button [disabled]="editMode" class="btn btn-sm btn-primary" (click)="addNewRow()">Add New Row</button>
+        <button [disabled]="editMode" class="btn btn-sm btn-info ms-2" (click)="addNewColumn()">Add New Column</button>
+        <button [ngClass]="editMode ? 'btn-secondary' : 'btn-warning'" class="btn btn-sm ms-2" (click)="editMode = !editMode">Edit Mode <span>{{ !editMode ? "On" : "Off" }}</span></button>
+        <!-- <button class="btn btn-sm btn-danger ms-2" (click)="deleteCol = !deleteCol">Delete Col Mode</button> -->
+      </div>
+    </div>
+    <div class="wrapper">
+      <table>
+        <thead class="sticky-top">
+          <tr>
+            <th *ngFor="let currentCol of headerCols">
+              {{ currentCol }}
+              <span *ngIf="editMode"><button class="btn btn-sm btn-danger" (click)="deleteColumn(currentCol)">-</button></span>
+            </th>
+            <th *ngIf="editMode">Del</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!editMode">
+          <tr *ngFor="let currentStudent of studentListArray; index as i">
+            <td *ngFor="let currentCol of headerCols">
+              {{ currentStudent[currentCol] }}
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="editMode">
+          <tr *ngFor="let currentStudent of studentListArray; index as i">
+            <td *ngFor="let currentCol of headerCols">
+              <input type="text" name="" id="" [(ngModel)]="currentStudent[currentCol]" >
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deleteRow(i)">
+                -
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

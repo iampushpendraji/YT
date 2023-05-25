@@ -1,0 +1,52 @@
+<div id="main">
+  <div id="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>SR</th>
+          <th>
+            <div class="col-header">
+              <span>Name</span>
+              <input #nameVar placeholder="search name" (keyup)="searchFilter()" type="text" name="" id="" />
+            </div>
+          </th>
+          <th>
+            <div class="col-header">
+              <span>Email</span>
+              <input placeholder="search email" #emailVar (keyup)="searchFilter()" type="text" name="" id="" />
+            </div>
+          </th>
+          <th>
+            <div class="col-header">
+              <span>Class</span>
+              <input #classVar placeholder="search class" (keyup)="searchFilter()" type="text" name="" id="" />
+            </div>
+          </th>
+          <th>
+            <div class="col-header">
+              <span>Age</span>
+              <input #ageVar placeholder="search age" (keyup)="searchFilter()" type="text" name="" id="" />
+            </div>
+          </th>
+          <th>
+            <div class="col-header">
+              <span>Language</span>
+              <input #languageVar placeholder="search language" (keyup)="searchFilter()" type="text" name="" id="" />
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let student of tempStudentListArray; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.class }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.language }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

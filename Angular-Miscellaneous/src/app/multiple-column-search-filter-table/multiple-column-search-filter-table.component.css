@@ -1,0 +1,33 @@
+#main {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(252, 70, 107, 1) 0%,
+    rgba(107, 63, 251, 0.7483) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#table-wrapper {
+  background-color: rgb(255 245 245 / 71%);
+}
+
+.col-header {
+  display: flex;
+  flex-direction: column;
+}
+
+td,
+th {
+  padding: 10px 20px;
+  border: 1px solid gray;
+}
+
+input{
+    border-radius: 50px;
+    padding: 5px 10px;
+    border: 1px solid;
+}

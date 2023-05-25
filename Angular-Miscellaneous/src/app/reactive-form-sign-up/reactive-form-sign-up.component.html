@@ -1,0 +1,179 @@
+<div class="main">
+  <div class="sign-up-wrapper">
+    <div class="form-header">
+      <mat-icon class="lock">lock_open</mat-icon>
+      <h1>Sign Up</h1>
+    </div>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="signUpClickHandler()">
+      <!-- First Name And Last Name -->
+      <div class="input-group">
+
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input type="text" matInput formControlName="first_name" />
+          <mat-icon 
+          [ngStyle]="((getControl('first_name'))?.dirty || ( getControl('first_name'))?.touched) && 
+          (getControl('first_name')?.hasError('required')) ? {'visibility': 'visible'}:{'visibility': 'hidden'}"
+          matSuffix
+          class="error-icon" 
+          [matTooltip]="'First Name field is required'"
+          >
+            info
+          </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input type="text" matInput formControlName="last_name" />
+          <mat-icon 
+          class="error-icon" 
+          matSuffix
+          [ngStyle]="((getControl('last_name'))?.dirty || ( getControl('last_name'))?.touched) && 
+          (getControl('last_name')?.hasError('required')) ? {'visibility': 'visible'}:{'visibility': 'hidden'}"
+          [matTooltip]="'Last Name field is required'"
+          >info</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      <!-- Email Address -->
+      <div>
+
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Email Address</mat-label>
+          <input type="email" matInput formControlName="email_address" />
+          <mat-icon 
+          class="error-icon" 
+          matSuffix
+          [ngStyle]="( getControl('email_address')?.dirty || getControl('email_address')?.touched ) &&
+            ( getControl('email_address')?.hasError('required') || getControl('email_address')?.hasError('pattern') ) ? 
+            {'visibility': 'visible'}:{'visibility': 'hidden'}"
+
+          [matTooltip]="getControl('email_address')?.hasError('required') ? 
+          'Email field if required' : ( !getControl('email_address')?.hasError('required') && 
+          getControl('email_address')?.hasError('pattern')) ? 'Please write valid email' : ''"
+          >info</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      <!-- Gender Select -->
+      <div class="gender-age-wrapper">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="gender" >
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+            <mat-option value="others">Others</mat-option>
+          </mat-select>
+          <mat-icon 
+          class="error-icon" 
+          matSuffix
+          [ngStyle]="getControl('gender')?.touched && getControl('gender')?.hasError('required') ? {'visibility': 'visible'}:{'visibility': 'hidden'} "
+          [matTooltip]="'Gender field is required'"
+          >info</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input type="text" matInput formControlName="age" />
+          <mat-icon 
+          class="error-icon" 
+          matSuffix
+
+          [ngStyle]="( getControl('age')?.dirty || getControl('age')?.touched ) && 
+          ( ( getControl('age')?.hasError('required') || getControl('age')?.hasError('pattern') ) || 
+          ( ( getControl('age')?.hasError('max') || getControl('age')?.hasError('min') ) && 
+          ( !getControl('age')?.hasError('required') && !getControl('age')?.hasError('pattern') ) ) ) ? 
+          {'visibility': 'visible'} : {'visibility': 'hidden'}"
+
+          [matTooltip]="getControl('age')?.hasError('required') ? 'Age field is required' : 
+          ( ! getControl('age')?.hasError('required') && getControl('age')?.hasError('pattern')) ? 
+          'Please write only numbers' : ( ( getControl('age')?.hasError('max') || getControl('age')?.hasError('min')) &&
+          ( !getControl('age')?.hasError('required') && ! getControl('age')?.hasError('pattern') ) ) ? 'Age should be in range 1 to 125' : ''"
+
+          >info</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      <!-- Password And Confirm Password -->
+      <div>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Password</mat-label>
+          <input [type]="showPassword ? 'text' : 'password'" matInput formControlName="password" />
+          <mat-icon
+          matSuffix
+          class="passwordIcon"
+          (click)="showPassword = !showPassword"
+          [matTooltip]="showPassword ? 'Hide password' : 'Show password'"
+          >
+            {{ !showPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-icon 
+          class="error-icon" 
+          matSuffix
+          [ngStyle]="( getControl('password')?.dirty || getControl('password')?.touched ) &&
+          ( getControl('password')?.hasError('required') || getControl('confirm_password')?.hasError('passwordMatch')) ? 
+          {'visibility': 'visible'} : {'visibility': 'hidden'}"
+
+          [matTooltip]="getControl('password')?.hasError('required') ? 
+          'Password field is required' : ( getControl('password')?.hasError('passwordMatch') || 
+          !getControl('password')?.hasError('required')) ? 
+          'Password and Confirm Password is not matching' : '' "
+          >info</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Confirm Password</mat-label>
+          <input [type]="showConfirmPassword ? 'text' : 'password'" matInput formControlName="confirm_password" />
+          <mat-icon
+          matSuffix
+          class="passwordIcon"
+          (click)="showConfirmPassword = !showConfirmPassword"
+          [matTooltip]="showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'"
+          >
+            {{ !showConfirmPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-icon 
+          class="error-icon" 
+          matSuffix
+          [ngStyle]="( getControl('confirm_password')?.dirty || getControl('confirm_password')?.touched ) &&
+          ( getControl('confirm_password')?.hasError('required') || getControl('confirm_password')?.hasError('passwordMatch')) ? 
+          {'visibility': 'visible'} : {'visibility': 'hidden'}"
+
+          [matTooltip]="getControl('confirm_password')?.hasError('required') ? 
+          'Confirm Password field is required' : ( getControl('confirm_password')?.hasError('passwordMatch') || 
+          !getControl('confirm_password')?.hasError('required')) ? 
+          'Password and Confirm Password is not matching' : '' "
+
+          >info</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <!-- Check Box -->
+
+      <div>
+        <mat-checkbox formControlName="check" (change)="onChange($event)">
+          I agree to the terms and services
+        </mat-checkbox>
+      </div>
+
+      <div>
+        <button type="submit" mat-flat-button color="primary" [disabled]="signUpForm.status == 'INVALID'">Sign Up</button>
+      </div>
+
+      <div class="log-in-btn">
+        <a routerLink="">Already Have An Account ? <strong>Login</strong></a>
+      </div>
+
+    </form>
+
+  </div>
+</div>
