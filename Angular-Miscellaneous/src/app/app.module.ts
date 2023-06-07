@@ -19,6 +19,7 @@ import { DymanicColumnRowWihoutReactiveFormsComponent } from './dymanic-column-r
 import { AccessRefreshTokenSalesforceComponent } from './token-salesforce/access-refresh-token-salesforce/access-refresh-token-salesforce.component';
 import { TokenGetSalesforceComponent } from './token-salesforce/token-get-salesforce/token-get-salesforce.component';
 import { RefreshTokenSalesforceComponent } from './refresh-token/refresh-token-salesforce/refresh-token-salesforce.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RefreshTokenSalesforceComponent } from './refresh-token/refresh-token-s
     MatButtonModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
