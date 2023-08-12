@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center h-100 mt-5">
+
+    <!-- Template Driven Form -->
+    <form #studentForm="ngForm" (ngSubmit)="submitForm(studentForm)" class="w-50">
+        <div class="border border-info p-5">
+
+            <!-- Student Element -->
+            <div *ngFor="let student of studentData; let studentIndex = index; trackBy:track;" class="border border-dark mt-2 p-5">
+                <input required class=”form-control” type=”text” [(ngModel)]="student.name" name="name_{{student.studentId}}" placeholder="Student's Name"/>
+                <input required class=”form-control” type=”text” [(ngModel)]="student.class" name="class_{{student.studentId}}" placeholder="Student's Class" />
+                <input required class=”form-control” type="number" [(ngModel)]="student.age" name="age_{{student.studentId}}" placeholder="Student's Age" />
+                <button *ngIf="studentData.length > 1" type="button" class="btn btn-sm btn-danger" (click)="removeStudent(studentIndex)">Remove Student</button>
+                
+                <!-- Subject Relative To Student -->
+                <div *ngFor="let subject of student.subjects; let subjectIndex = index; trackBy:track;">
+                 <input required type="text" name="subject_{{subject.subjectId}}" [(ngModel)]="subject.subject" placeholder="Subject" />
+                 <input required type="number" name="marks_{{subject.subjectId}}" [(ngModel)]="subject.marks" placeholder="Marks" />
+                 
+                 <!-- For Removing subject from student element -->
+                 <button *ngIf="student.subjects.length > 1" type="button" class="btn btn-sm btn-danger" (click)="removeSubject(studentIndex, subjectIndex)">Remove Subject</button>
+                </div>
+                
+                <!-- For Adding subject in student element -->
+                <button type="button" class="btn btn-sm btn-warning mt-2" (click)="addNewSubject(studentIndex)">Add Subject</button>
+            </div>
+         
+         
+        </div>
+
+        <!-- For adding new student -->
+        <button type="button" class="btn btn-sm btn-primary mt-4" (click)="addNewStudent()">Add New Student</button>
+        <button type="submit" class="btn btn-sm btn-success mt-4 ms-2" type="submit" [disabled]="studentForm.status == 'INVALID'">Submit</button>
+     </form>
+</div>

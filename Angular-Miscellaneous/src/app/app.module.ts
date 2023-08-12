@@ -20,6 +20,7 @@ import { AccessRefreshTokenSalesforceComponent } from './token-salesforce/access
 import { TokenGetSalesforceComponent } from './token-salesforce/token-get-salesforce/token-get-salesforce.component';
 import { RefreshTokenSalesforceComponent } from './refresh-token/refresh-token-salesforce/refresh-token-salesforce.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TemplateDrivenDynamicFieldsComponent } from './template-driven-dynamic-fields/template-driven-dynamic-fields.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     AccessRefreshTokenSalesforceComponent,
     TokenGetSalesforceComponent,
     RefreshTokenSalesforceComponent,
+    TemplateDrivenDynamicFieldsComponent,
   ],
   imports: [
     BrowserModule,
